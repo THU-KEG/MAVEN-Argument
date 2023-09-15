@@ -1,2 +1,3 @@
 # MAVEN-Argument
-Completing the Puzzle of All-in-One Event Understanding Benchmark with Event Arguments
+Event argument annotation for MAVEN dataset.
+Datasets and baselines are coming soon. Stay tuned!
