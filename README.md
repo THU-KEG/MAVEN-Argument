@@ -11,7 +11,7 @@ MAVEN-Arg is an advanced event argument extraction dataset, which offers three m
 ## MAVEN-Arg Dataset
 
 ### Get the data
-The dataset (ver. 1.0) can be obtained from [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/7c2ddd979ddc48baa85e/?dl=1) or [Google Drive](https://drive.google.com/file/d/14pIzi18NAVixHoVkVGJ1MWv19bqzSG7A/view?usp=sharing).
+The dataset (ver. 1.0) can be obtained from [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/7c2ddd979ddc48baa85e/?dl=1) or [Google Drive](https://drive.google.com/file/d/1EwQOboosygwrQxzmop320b5eYgATG9kk/view?usp=sharing).
 
 Note that the annotations of the test set are kept unpublic to maintain a fair evaluation environment. To get evaluation results on the test set, you need to submit your predictions to CodaLab following our [instructions](https://github.com/THU-KEG/MAVEN-Argument#get-test-results-from-codalab).
 
@@ -78,18 +78,35 @@ Each `.jsonl` file is a subset of `MAVEN-Arg` and each line in the files is a JS
             ]
         },
     ]
+    "negative_triggers": [ // a list for negative instances, each item is a dict for a negative event trigger. used for conducting pipeline evaluation (evaluating event argument extraction considering the errors of event detection).
+        {
+            "id": "d48f41c5b3a3729dfdcf23e6dfa7734c",
+            "trigger_word": "consisted",
+            "offset": [
+                922,
+                931
+            ]
+        },
+        {
+            "id": "1fa31015582b2a068aead5928445aeed",
+            "trigger_word": "ranging",
+            "offset": [
+                1399,
+                1406
+            ]
+        }
+    ]
 }
 ```
 
 - For the `test.jsonl`, the format is similar but we hide the ground truth annotations to organize a fair evaluation challenge. To get evaluation results on the test set, you need to submit the prediction results to our [CodaLab competition](https://codalab.lisn.upsaclay.fr/competitions/17225). 
-- To avoid leaking the test set of the MAVEN event detection challenge and the MAVEN-ERE event relation extraction challenge, the candidate event mentions we offered here have more than the golden annotations and no coreference clusters. But we only evaluate your predictions for the golden event mentions.
-
+- To avoid leaking the test set of the MAVEN-ERE event relation extraction challenge, the candidate event mentions we offered here have no coreference clusters.
 ```JSON5
 {
     "id": "e3e04de8ce0fba75eb678ef5af6c015d", // an unique string for each document
     "title": "Lufthansa Flight 615", // the title of the document
     "document": "The hijacking of Lufthansa Flight 615 was an act of terrorism committed ...", // a string, the content of the document
-    "event_mentions": [ // a list for event mentions/triggers (and distractors), you need to predict the arguments for the given triggers
+    "event_mentions": [ // a list for event mentions/triggers, you need to predict the arguments for the given triggers
         {
             "id": "6bb914d51ee13d35b3136286c8759911", // an unique string for the event trigger
             "trigger_word": "massacre", // a string of the trigger word or phrase
@@ -129,6 +146,24 @@ Each `.jsonl` file is a subset of `MAVEN-Arg` and each line in the files is a JS
             ]
         }
     ]
+    "negative_triggers": [ // a list for negative instances, each item is a dict for a negative event trigger. used for conducting pipeline evaluation (evaluating event argument extraction considering the errors of event detection).
+        {
+            "id": "7e01f352a6a80b709fe4ab9b9396e460",
+            "trigger_word": "act",
+            "offset": [
+                45,
+                48
+            ]
+        },
+        {
+            "id": "185fd3c2b02c39ec0c678abf35607d61",
+            "trigger_word": "acts",
+            "offset": [
+                2619,
+                2623
+            ]
+        }
+    ]
 }
 ```
 
@@ -141,7 +176,7 @@ You need to name your result file as `test_prediction.jsonl` and compress it int
 {
     "id": "097b52eff5925669079ad5c227b95425", // an unique string for each document
     "preds": {  // a dict of the submitted predictions, every key is an id for an event mention
-        "c0834cd8f9e43caae8aa1865713cad9c": { // id of the event mention
+        "c0834cd8f9e43caae8aa1865713cad9c": { // id of the event mention (or possibly negative trigger if you are using predicted event triggers)
             "event_type": "Catastrophe",  // its event type, you can use our provided event type (the gold trigger evaluation setup) or use your own predicted event type (the pipeline evaluation setup)
             "Location": [ //the other keys are argument roles, its value is the predicted arguments of the role
                 "Hemel Hempstead" //the content string of the predicted arguments 
