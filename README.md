@@ -20,46 +20,37 @@ Each `.jsonl` file is a subset of `MAVEN-Arg` and each line in the files is a JS
 
 ```JSON5
 {
-    "id": "10e205fef03228c5599fd76e06aba973",
-    "title": "The Virgin Tour",
-    "document": "The Virgin Tour was the debut concert tour by American singer-songwriter Madonna . The tour supported her first two studio albums , `` Madonna '' ( 1983 ) and `` Like a Virgin '' ( 1984 ) . although initially planned for an international audience , the tour was restricted to the united states and canada . Warner Bros. Records decided to send Madonna on tour after `` Like a Virgin '' became a success . After an official announcement on March 15 , 1985 , Madonna and her team began production plans . She wanted the tour to be a reflection of her own self and collaborated with designer Maripol for the costumes . Beastie Boys were signed as the opening act , while record producer Patrick Leonard was the music director . The stage was triangular and included ramps around it , with lighting arrangements hanging about 30 feet above . Four giant screens lined three sides of the stage 's outer perimeter . The set list consisted of songs from `` Madonna '' and `` Like a Virgin '' . Madonna was backed by two dancers as she moved energetically across the stage . The show ended with her in a wedding dress , performing `` Like a Virgin '' and `` Material Girl '' . The tour received a mixed reception from critics , but was a commercial success . As soon as it was announced , tickets were sold everywhere . Macy 's New York department store was flooded with buyers , who bought tour merchandise ranging from shirts and sunglasses to crucifix earrings and fingerless gloves . On its end , the tour was reported to have grossed over $ 5 million ( $ million in dollars ) , with `` Billboard '' Boxscore reporting a gross of $ 3.3 million ( $ million in dollars ) . The tour was recorded and released on VHS and LaserDisc , as `` '' , which received a gold certification by the Recording Industry Association of America ( RIAA ) . With the commencement of the Virgin Tour , a wide-ranging audience\u2014especially young women\u2014thronged to attend , attired in Madonna-inspired clothing . This frenzy regarding Madonna gave rise to a new term called Madonna wannabe\u2014a word that was ultimately officially recognized by the Webster 's Dictionary in May 1991 .",
-    "events": [
+    "id": "10e205fef03228c5599fd76e06aba973", // an unique string for each document
+    "title": "The Virgin Tour", // the title of the document
+    "document": "The Virgin Tour was the debut concert tour by American singer-songwriter Madonna ...", // a string, the content of the document
+    "events": [ // a list for annotated events, each item is a dict for an event
         {
-            "id": "EVENT_1d3c5f5babae4f1e51fd159531a2cda7",
-            "type": "Supporting",
-            "type_id": 42,
-            "mention": [
+            "id": "EVENT_1d3c5f5babae4f1e51fd159531a2cda7", // a unique string id for the event
+            "type": "Supporting", // the event type
+            "type_id": 42, // the numerical id for the event type, consistent with MAVEN
+            "mention": [ // a list for the coreferential event triggers of the event, each item is a dict
                 {
-                    "id": "e82a32824ef335909d01eee543b1c0ef",
-                    "trigger_word": "supported",
-                    "offset": [
-                        92,
-                        101
-                    ]
+                    "id": "e82a32824ef335909d01eee543b1c0ef", // an unique string for the event trigger
+                    "trigger_word": "supported", // a string of the trigger word or phrase
+                    "offset": [ 92, 101 ] // the char offset of the trigger words in the document string
                 }
             ],
-            "argument": {
-                "Agent": [
-                    {
-                        "content": "Virgin Tour",
-                        "offset": [
-                            4,
-                            15
-                        ]
+            "argument": { // the annotated event arguments of the event, a dict
+                "Agent": [ // every key is an argument role corresponding to the event type. Its value is a list for all the event arguments of the argument role
+                    { // for non-entity arguments, a dict consisting of its content and char offsets in the document string
+                        "content": "Virgin Tour", 
+                        "offset": [ 4, 15 ]
                     }
                 ],
                 "Patient": [
                     {
                         "content": "her first two studio albums",
-                        "offset": [
-                            102,
-                            129
-                        ]
+                        "offset": [ 102, 129 ]
                     }
                 ],
                 "Location": [
-                    {
-                        "entity_id": "ENTITY_c540c651ba640ff340a3f066301fb57e"
+                    { // for entity arguments, a dict only contains its entity id
+                        "entity_id": "ENTITY_c540c651ba640ff340a3f066301fb57e" 
                     },
                     {
                         "entity_id": "ENTITY_14e4c32b17ba928980b81c905d32b2e4"
@@ -69,26 +60,20 @@ Each `.jsonl` file is a subset of `MAVEN-Arg` and each line in the files is a JS
             }
         }
     ]
-    "entities": [
+    "entities": [ // a list of the annotated entities of the document, each item is a dict for an entity
         {
-            "id": "ENTITY_14e4c32b17ba928980b81c905d32b2e4",
-            "type": "Location",
-            "mention": [
+            "id": "ENTITY_14e4c32b17ba928980b81c905d32b2e4", // the unique id string for every entity
+            "type": "Location", // the entity type
+            "mention": [ // a list of all the coreferential entity mentions, each item is a dict for a mention 
                 {
-                    "id": "183ebc2b63e4715003ca98e53395cc49",
-                    "mention": "American",
-                    "offset": [
-                        46,
-                        54
-                    ]
+                    "id": "183ebc2b63e4715003ca98e53395cc49", // the unique id string for every entity mention
+                    "mention": "American", // its content
+                    "offset": [ 46, 54 ] // the char offset of the entity mention in the document string 
                 },
                 {
                     "id": "af43d31659caebaf31f399d158bbf4f1",
                     "mention": "the united states",
-                    "offset": [
-                        276,
-                        293
-                    ]
+                    "offset": [ 276, 293 ]
                 }
             ]
         },
@@ -96,86 +81,86 @@ Each `.jsonl` file is a subset of `MAVEN-Arg` and each line in the files is a JS
 }
 ```
 
-- For the `test.jsonl`, the format is similar but we hide the ground truth annotations to organize a fair evaluation challenge. To get evaluation results on the test set, you need to submit the prediction results to our [CodaLab competition](https://codalab.lisn.upsaclay.fr/competitions/8691#learn_the_details). 
+- For the `test.jsonl`, the format is similar but we hide the ground truth annotations to organize a fair evaluation challenge. To get evaluation results on the test set, you need to submit the prediction results to our [CodaLab competition](https://codalab.lisn.upsaclay.fr/competitions/17225). 
 - To avoid leaking the test set of the MAVEN event detection challenge and the MAVEN-ERE event relation extraction challenge, the candidate event mentions we offered here have more than the golden annotations and no coreference clusters. But we only evaluate your predictions for the golden event mentions.
 
 ```JSON5
 {
-  "id": "f28bce270df5a122c09365002d247e76", // an unique string for each document
-  "title": "United States occupation of Nicaragua", // the tiltle of the document
-  "tokens": [ // a list for tokenized document content. each item is a tokenized sentence
-    ["The", "United", "States", "occupation", "of", "Nicaragua", "from", 
-    "1912", "to", "1933", "was", "part", "of", "the", "Banana", "Wars", ",", 
-    "when", "the", "US", "military", "intervened", "in", "various", 
-    "Latin", "American", "countries", "from", "1898", "to", "1934", "."],
-  ],
-  "sentences": [ // untokenized sentences of the document. each item is a sentence (string)
-      "The United States occupation of Nicaragua from 1912 to 1933 was part of the Banana Wars, when the US military intervened in various Latin American countries from 1898 to 1934.",
-  ],
-  "event_mentions": [ // a list for event mentions (and distractors), you need to predict the relations between the given mentions
-    {
-      "id": "a75ba55cadad23555a0ffc9454088687", // an unique string for the event mention
-      "trigger_word": "assumed", // a string of the trigger word or phrase
-      "sent_id": 3, // the index of the corresponding sentence, starts with 0
-      "offset": [1, 2], // the offset of the trigger words in the tokens list
-      "type": "Choosing", // the event type
-      "type_id": 25, // the numerical id for the event type, consistent with MAVEN
-    }
-  ],
-  "TIMEX": [ // a list for annotated temporal expressions (TIMEX), each item is a dict for a TIMEX
-    {
-      "id": "TIME_833e41f3304210094101eca59905055e", // an unique string for the TIMEX
-      "mention": "1912", // a string of the mention of the TIMEX
-      "type": "DATE", // the type of the TIMEX
-      "sent_id": 0, // the index of the corresponding sentence, starts with 0
-      "offset": [7, 8] // the offset of the trigger words in the tokens list
-    }
-  ]
+    "id": "e3e04de8ce0fba75eb678ef5af6c015d", // an unique string for each document
+    "title": "Lufthansa Flight 615", // the title of the document
+    "document": "The hijacking of Lufthansa Flight 615 was an act of terrorism committed ...", // a string, the content of the document
+    "event_mentions": [ // a list for event mentions/triggers (and distractors), you need to predict the arguments for the given triggers
+        {
+            "id": "6bb914d51ee13d35b3136286c8759911", // an unique string for the event trigger
+            "trigger_word": "massacre", // a string of the trigger word or phrase
+            "type": "Killing", // the event type 
+            "type_id": 20, // the numerical id for the event type, consistent with MAVEN
+            "offset": [ 206, 214 ] // the char offset of the trigger words in the document string
+        },
+        {
+            "id": "d41814e7e00a17bddd4666ea444a4524",
+            "trigger_word": "defend",
+            "type": "Defending",
+            "type_id": 43,
+            "offset": [ 1835, 1841 ]
+        }
+    ],
+    "entities": [ // a list of the annotated entities of the document, each item is a dict for an entity
+        {
+            "id": "ENTITY_b48a2f49a11da300b2801c66d7e2599c", // the unique id string for every entity
+            "type": "Product", // the entity type
+            "mention": [ // a list of all the coreferential entity mentions, each item is a dict for a mention 
+                {
+                    "id": "ff02f2ecb4d26c755123f69fae61c3d2", // the unique id string for every entity mention
+                    "mention": "Lufthansa Flight 615", // its content
+                    "offset": [ 17, 37 ] // the char offset of the entity mention in the document string 
+                }
+            ]
+        },
+        {
+            "id": "ENTITY_d8b7df846d7898edecceb37eb0e27d3c",
+            "type": "Other",
+            "mention": [
+                {
+                    "id": "ac9c0a2ff3988414a7af5271da64055d",
+                    "mention": "eleven",
+                    "offset": [ 1274, 1280 ]
+                }
+            ]
+        }
+    ]
 }
 ```
 
 ## Get Test Results from CodaLab
-To get the test results, you can submit your predictions to our permanent [CodaLab competition](https://codalab.lisn.upsaclay.fr/competitions/8691#learn_the_details).
+To get the test results, you can submit your predictions to our permanent [CodaLab competition](https://codalab.lisn.upsaclay.fr/competitions/17225).
 
 You need to name your result file as `test_prediction.jsonl` and compress it into a zip format file named `submission.zip` for submission. Each line in the submission file should be a `JSON` string encoding the prediction results for one document. The JSON format is as below:
 
 ```JSON5
 {
-  "id": "f28bce270df5a122c09365002d247e76", // an unique string for each document, mandatory
-  "coreference": [ // a list for predicted coreference clusters, each item is a cluster of event mentions having coreference relations with each other
-      ["a75ba55cadad23555a0ffc9454088687", "555a0ffc9454a75ba08868755cadad23"] // a list for a predicted cluster, each item is the id of an event mention
-  ],
-  "temporal_relations": { // a list for predicted temporal relations between event mentions (not events) and TIMEXs
-    "BEFORE": [ // a list for predicted temporal relations of BEFORE type
-      ["a75ba55cadad23555a0ffc9454088687", "555a0ffc9454a75ba08868755cadad23"] // a temporal relation instance, its items shall be id of event mentions or TIMEXs
-    ],
-    "OVERLAP": [ // all the following types are similar
-      ["a75ba55cadad23555a0ffc9454088687", "TIME_id_1"]
-    ],
-    "CONTAINS": [
-      ["a75ba55cadad23555a0ffc9454088687", "555a0ffc9454a75ba08868755cadad23"]
-    ],
-    "SIMULTANEOUS": [
-      ["a75ba55cadad23555a0ffc9454088687", "555a0ffc9454a75ba08868755cadad23"]
-    ],
-    "ENDS-ON": [
-      ["a75ba55cadad23555a0ffc9454088687", "555a0ffc9454a75ba08868755cadad23"]
-    ],
-    "BEGINS-ON": [
-      ["555a0ffc9454a75ba08868755cadad23", "TIME_id_2"]
-    ],
-  },
-  "causal_relations": { // a list for predicted causal relations between event mentions (not events)
-    "CAUSE": [  // a list for causal relations of CAUSE type
-      ["a75ba55cadad23555a0ffc9454088687", "555a0ffc9454a75ba08868755cadad23"] // a causal relation instance, its items shall be id of event mentions
-    ],
-    "PRECONDITION": [ // the PRECONDITION type is similar
-      ["a75ba55cadad23555a0ffc9454088687", "555a0ffc9454a75ba08868755cadad23"]
-    ],
-  },
-  "subevent_relations": [ // a list for predicted subevent relations between event mention (not events)
-    ["a75ba55cadad23555a0ffc9454088687", "555a0ffc9454a75ba08868755cadad23"] // a subevent relation instance, its items shall be id of event mentions
-  ]
+    "id": "097b52eff5925669079ad5c227b95425", // an unique string for each document
+    "preds": {  // a dict of the submitted predictions, every key is an id for an event mention
+        "c0834cd8f9e43caae8aa1865713cad9c": { // id of the event mention
+            "event_type": "Catastrophe",  // its event type, you can use our provided event type (the gold trigger evaluation setup) or use your own predicted event type (the pipeline evaluation setup)
+            "Location": [ //the other keys are argument roles, its value is the predicted arguments of the role
+                "Hemel Hempstead" //the content string of the predicted arguments 
+            ]
+        },
+        "a5c4a56d93d4bcd7bfbef9607f97d3a7": {
+            "event_type": "Destroying",
+            "Location": [
+                "Hemel Hempstead",
+                "tank 912"
+            ],
+            "Agent": [
+                "further explosions"
+            ],
+            "Patient": [
+                "20 large storage tanks"
+            ]
+        },
+    }
 }
 ```
 
