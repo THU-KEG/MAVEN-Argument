@@ -112,6 +112,8 @@ def get_pred_label_spans(pred_path, test_file, ignore_non_entity=False):
                         for mention in argument["mentions"]:
                             spans.append(item["text"][mention["position"][0]:mention["position"][1]])
                     label_id2spans[id]["spans"].append(spans)
+        for mention in item['negative_triggers']:
+            tid2eid[mention['id']]="NA"
     # (doc id, event id, trigger id, pred event type, position, pred role type)
     # convert to ``id to prediction per role type``
     # {
