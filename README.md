@@ -11,7 +11,7 @@ MAVEN-Arg is an advanced event argument extraction dataset, which offers three m
 ## MAVEN-Arg Dataset
 
 ### Get the data
-The dataset (ver. 1.0) can be obtained from [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/7c2ddd979ddc48baa85e/?dl=1) or [Google Drive](https://drive.google.com/file/d/1EwQOboosygwrQxzmop320b5eYgATG9kk/view?usp=sharing).
+The dataset (ver. 1.0) can be obtained from [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/8b3e416fb264400c8a9b/?dl=1) or [Google Drive](https://drive.google.com/file/d/1JmSbAimW4STxp0eqsCfN_JE9MAfCy4hB/view?usp=sharing).
 
 Note that the annotations of the test set are kept unpublic to maintain a fair evaluation environment. To get evaluation results on the test set, you need to submit your predictions to CodaLab following our [instructions](https://github.com/THU-KEG/MAVEN-Argument#get-test-results-from-codalab).
 
